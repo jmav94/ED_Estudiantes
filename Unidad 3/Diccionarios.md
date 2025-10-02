@@ -27,25 +27,58 @@ print(estudiante["nombre"])  # Ana
 
 ```python
 # Crear un diccionario
+dic = {
+    "a": 1,
+    "b": 2
+}
 
 # Acceder a un valor
 
+print(dic["a"]) # 1
+
 # Agregar un nuevo par clave-valor
+
+dic["c"] = 3 
 
 # Modificar un valor
 
+dic["a"] = 10
+
 # Eliminar un par
+
+del dic["b"]
 
 # Comprobar existencia de clave
 
+print("a" in dic) #True
+print("e" in dic) # False
+
 # Recorrer claves y valores
+
+for clave, valor in dic.items():
+    print(clave, valor)
 
 ## 4. Métodos Útiles
 
+dic = {"x": 100, "y": 200}
+
+dic.keys() # x,  y 
+dic.values() # 100, 200
+dic.items() # (x, 100) , (y, 200) 
+
+
 # Obtener valor con get (más seguro que [])
+print(dict.get("x")) # 100
+
+
 
 # Eliminar y devolver un valor
+valor = dic.pop("y")
 
+print(valor) # 200
+
+
+```
 
 ## 5. Comparación: Lista vs Diccionario
 
