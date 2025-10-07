@@ -96,6 +96,20 @@ Crea un diccionario llamado `alumno` con las claves: `nombre`, `edad`, `carrera`
 Imprime cada clave y valor en formato:
 `nombre: Ana`
 
+```python
+
+alumno = {
+    "nombre": "Ana",
+    "edad": 20,
+    "carrera": "Ingeniería en Sistemas"
+}
+
+for clave, valor in alumno.items():
+    print(f"{clave}: {valor}")
+
+
+```
+
 
 ### Ejercicio 2 – Conteo de palabras
 
@@ -107,6 +121,23 @@ texto = "hola mundo hola python mundo"
 # {"hola": 2, "mundo": 2, "python": 1}
 ```
 
+```python
+
+texto = "hola mundo hola python mundo"
+palabras = texto.split()
+frecuencia = {}
+
+for palabra in palabras:
+    if palabra in frecuencia:
+        frecuencia[palabra] += 1
+    else:
+        frecuencia[palabra] = 1
+
+print(frecuencia)
+
+
+```
+
 
 ### Ejercicio 3 – Agenda telefónica
 
@@ -115,6 +146,28 @@ Crea un programa que permita:
 1. Agregar un contacto (`nombre` → `número`).
 2. Buscar un contacto por nombre.
 3. Eliminar un contacto.
+
+```python
+
+agenda = {}
+
+# 1. Agregar
+agenda["Ana"] = "123456789"
+agenda["Luis"] = "987654321"
+
+# 2. Buscar
+nombre = "Ana"
+if nombre in agenda:
+    print(f"{nombre}: {agenda[nombre]}")
+else:
+    print("Contacto no encontrado")
+
+# 3. Eliminar
+del agenda["Luis"]
+
+print("Agenda final:", agenda)
+
+```
 
 
 ### Ejercicio 4 – Diccionario con listas
@@ -126,9 +179,25 @@ calificaciones = {
     "Matemáticas": [90, 85, 88],
     "Programación": [100, 95, 97],
 }
+
 ```
 
 Calcula el promedio por materia.
+
+```python
+
+calificaciones = {
+    "Matemáticas": [90, 85, 88],
+    "Programación": [100, 95, 97],
+    "Bases de Datos": [85, 80, 90]
+}
+
+for materia, notas in calificaciones.items():
+    promedio = sum(notas) / len(notas)
+    print(f"{materia}: {promedio:.2f}")
+
+
+```
 
 ---
 
@@ -144,6 +213,17 @@ frecuencia = Counter(texto.split())
 print(frecuencia)
 ```
 
+```python
+
+from collections import Counter
+
+texto = "python java python c c c java"
+palabras = texto.split()
+frecuencia = Counter(palabras)
+
+print(frecuencia)
+
+```
 ---
 
 ## 7. Mini Proyecto del tema
@@ -163,6 +243,38 @@ Inventario inicial: {"manzanas": 10, "peras": 5}
 Vender("manzanas", 3) → {"manzanas": 7, "peras": 5}
 Vender("naranjas", 2) → "Producto no encontrado"
 ```
+
+```python
+
+inventario = { 
+    "manzanas": 10,
+    "peras" : 5
+     }
+
+def vender(prodcuto, cantidad){
+    if producto in inventario: 
+        if inventario[producto] >= cantidad:
+            inventario[producto] -= cantidad
+            print(f"Se vendieron {cantidad} {producto}.")
+        else:
+            print(f"No hay suficiente cantidad en inventario.")
+    else:
+        print(f"Producto no encontrado")
+}
+
+def mostrar_inventario():
+    print("Inventario actual:", inventario)
+
+
+# Ejemplo de uso
+mostrar_inventario()
+vender("manzanas", 3)
+mostrar_inventario()
+vender("peras", 2)
+
+
+```
+
 
 
 ## 8. Preguntas de Evaluación
