@@ -4,7 +4,7 @@
 ---
 **Representaciones comunes de árboles**
 
-### Representación con listas anidadas**
+### Representación con listas anidadas  
 
 Es la forma más simple y directa para árboles pequeños o demostrativos.
 
@@ -34,7 +34,7 @@ arbol = ['A',
 * No hay encapsulación ni métodos.
 
 
-### Representación con diccionarios**
+### Representación con diccionarios
 
 Adecuada para árboles **no necesariamente binarios**, especialmente si las claves son **nombres o identificadores únicos**.
 
@@ -109,19 +109,19 @@ A
   C
 ```
 
-📕 **Ventajas:**
+**Ventajas:**
 
 * Permite expandir el diseño (agregar métodos: búsqueda, recorrido, altura).
 * Ideal para modelar estructuras reales.
 
-📕 **Desventajas:**
+**Desventajas:**
 
 * Requiere más memoria y código.
 * Más complejo de serializar.
 
 ---
 
-###  Representación de Árbol Binario**
+###  Representación de Árbol Binario
 
 Un árbol **binario** restringe a **dos hijos** por nodo: izquierdo y derecho.
 Se usa ampliamente en algoritmos de búsqueda, ordenación y compresión.
@@ -159,7 +159,7 @@ Estructura visual:
 
 ---
 
-##  ** Recorridos básicos**
+##  Recorridos básicos
 
 Los **recorridos** son métodos para visitar todos los nodos del árbol de manera sistemática.
 
@@ -198,11 +198,46 @@ def preorden(nodo):
 ## **5. Actividades prácticas**
 
 ### **Actividad 1: Construcción**
-
+Crea una clase Node con atributos data y children.
+Construye un árbol que represente el sistema de carpetas:
+```
+Root
+ ├── Documentos
+ │    ├── Escuela
+ │    └── Trabajo
+ └── Imágenes
+      ├── Vacaciones
+      └── Familia
+```
+Implementa un método print_tree() para mostrarlo jerárquicamente.
 
 ### **Actividad 2: Árbol binario**
 
+Estructura visual:
 
-### **Actividad 3 (opcional de reto)**
+```
+        A
+       / \
+      B   C
+     / \   \
+    D   E   F
+```
 
+1. Implementa la clase `NodoBinario`.
+2. Crea el árbol del ejemplo anterior (A–F).
+3. Implementa e imprime los recorridos:
 
+   * Preorden
+   * Inorden
+   * Postorden
+
+### **Actividad 3**
+
+Agrega un método a `NodoBinario` que calcule la **altura** del árbol:
+
+```python
+def altura(nodo):
+    if nodo is None:
+        return 0
+    return 1 + max(altura(nodo.izquierdo), altura(nodo.derecho))
+```
