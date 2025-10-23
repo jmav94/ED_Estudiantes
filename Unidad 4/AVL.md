@@ -210,6 +210,14 @@ def insertar(raiz, valor):
         return rotacion_izquierda(raiz)
 
     return raiz
+
+
+raiz = None
+for valor in [30, 20, 10]:
+    raiz = insertar(raiz, valor)
+print("Recorrido inorden del AVL balanceado:")
+inorden(raiz)
+
 ```
 
 
@@ -272,7 +280,7 @@ def splay(raiz, valor):
         if valor < raiz.izq.valor:
             raiz.izq.izq = splay(raiz.izq.izq, valor)
             raiz = rotacion_derecha(raiz)
-        elif valor > raiz.izq.valor:
+         elif valor > raiz.izq.valor:
             raiz.izq.der = splay(raiz.izq.der, valor)
             if raiz.izq.der:
                 raiz.izq = rotacion_izquierda(raiz.izq)
@@ -290,6 +298,16 @@ def splay(raiz, valor):
         return rotacion_izquierda(raiz) if raiz.der else raiz
 
     return raiz
+
+raiz = NodoSplay(10)
+raiz.der = NodoSplay(20)
+raiz.der.der = NodoSplay(30)
+
+# Acceder al valor 30
+raiz = splay(raiz, 30)
+
+# Imprimir raíz actual
+print("Raíz actual tras acceder 30:", raiz.valor)
 ```
 
 
