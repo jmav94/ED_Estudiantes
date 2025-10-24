@@ -211,7 +211,7 @@ def insertar(raiz, valor):
 
     return raiz
 
-
+## Uso
 raiz = None
 for valor in [30, 20, 10]:
     raiz = insertar(raiz, valor)
@@ -299,6 +299,7 @@ def splay(raiz, valor):
 
     return raiz
 
+## uso
 raiz = NodoSplay(10)
 raiz.der = NodoSplay(20)
 raiz.der.der = NodoSplay(30)
