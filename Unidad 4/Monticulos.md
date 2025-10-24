@@ -52,6 +52,111 @@ Relaciones entre índices:
 | Hijo izquierdo | 2 * i + 1    |
 | Hijo derecho   | 2 * i + 2    |
 
+
+
+## La Idea Central
+
+Un **árbol binario completo** se puede almacenar en un array **leyendo sus niveles de arriba a abajo y de izquierda a derecha**.
+
+```
+    Árbol:          Array:
+      0            [0, 1, 2, 3, 4, 5]
+     /   \
+    1     2        Posiciones: 0, 1, 2, 3, 4, 5
+   / \   /
+  3   4 5
+```
+
+---
+
+## Explicación Visual con Ejemplo
+
+Usemos este array: `[A, B, C, D, E, F]`
+
+```
+    Árbol:          Array:
+      A (0)         Índices: [0:A, 1:B, 2:C, 3:D, 4:E, 5:F]
+     /   \
+    B(1)  C(2)
+   / \    /
+  D(3) E(4) F(5)
+```
+
+### 1. **Padre de i = (i - 1) // 2** ⬆️
+
+**¿Por qué?** Porque cada nivel tiene aproximadamente el doble de nodos que el anterior.
+
+**Ejemplos:**
+- **Padre de E (índice 4)**: `(4 - 1) // 2 = 3 // 2 = 1` → **B** ✅
+- **Padre de F (índice 5)**: `(5 - 1) // 2 = 4 // 2 = 2` → **C** ✅
+- **Padre de D (índice 3)**: `(3 - 1) // 2 = 2 // 2 = 1` → **B** ✅
+
+### 2. **Hijo izquierdo = 2 × i + 1** ⬇️↙️
+
+**¿Por qué?** Porque cada nodo padre tiene exactamente 2 hijos en el nivel siguiente.
+
+**Ejemplos:**
+- **Hijo izquierdo de A (0)**: `2×0 + 1 = 1` → **B** ✅
+- **Hijo izquierdo de B (1)**: `2×1 + 1 = 3` → **D** ✅
+- **Hijo izquierdo de C (2)**: `2×2 + 1 = 5` → **F** ✅
+
+### 3. **Hijo derecho = 2 × i + 2** ⬇️↘️
+
+**¿Por qué?** Está justo al lado del hijo izquierdo.
+
+**Ejemplos:**
+- **Hijo derecho de A (0)**: `2×0 + 2 = 2` → **C** ✅
+- **Hijo derecho de B (1)**: `2×1 + 2 = 4` → **E** ✅
+- **Hijo derecho de C (2)**: `2×2 + 2 = 6` → ❌ (no existe, índice fuera del array)
+
+---
+
+## Explicación Matemática Simple
+
+Imagina que los nodos están numerados por niveles:
+
+```
+Nivel 0:               0
+Nivel 1:         1           2
+Nivel 2:     3     4     5     6
+Nivel 3:   7   8 9  10 11 12 13 14
+```
+
+**Patrón:**
+- El **nivel k** comienza en el índice: `2^k - 1`
+- Cada nodo en la posición `i` tiene:
+  - **Hijos en**: `2i+1` y `2i+2`
+  - **Padre en**: `⌊(i-1)/2⌋` (división entera)
+
+---
+
+## Puntos Importantes a Recordar
+
+1. **// significa división entera**: Descarta el decimal `(5-1)//2 = 4//2 = 2`
+2. **Verifica los límites del array**: Un hijo puede no existir si el índice calculado es mayor que el tamaño del array
+3. **La raíz está en índice 0**: El padre de la raíz no existe
+
+---
+
+## Ejemplo Práctico en Código
+
+```python
+class MinHeap:
+    def __init__(self):
+        self.heap = []
+    
+    def parent(self, i):
+        return (i - 1) // 2
+    
+    def left_child(self, i):
+        return 2 * i + 1
+    
+    def right_child(self, i):
+        return 2 * i + 2
+    
+    def swap(self, i, j):
+        self.heap[i], self.heap[j] = self.heap[j], self.heap[i]
+```
 ---
 
 ## 3. Operaciones básicas en un Heap
